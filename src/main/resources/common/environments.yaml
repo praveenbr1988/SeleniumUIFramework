@@ -1,0 +1,9 @@
+default: dev
+
+environments:
+  dev:
+    app.url: "http://www.devexample.com"
+  qa:
+    app.url: "http://www.google.com"
+  prod:
+    app.url: "http://www.prodexample.com"
