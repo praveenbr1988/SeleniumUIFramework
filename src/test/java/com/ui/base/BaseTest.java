@@ -9,6 +9,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+
 public class BaseTest {
 
     protected static final Logger logger = LoggerUtil.getLogger(BaseTest.class);
@@ -19,7 +22,7 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters("browser")
-    public void setUp(@Optional("chrome") String browser) {
+    public void setUp(@Optional("chrome") String browser) throws MalformedURLException, FileNotFoundException {
         logger.info("Test setup started");
         String env = ConfigurationReader.getProperty("env");
         YamlReader.setEnvironment(env);
@@ -29,10 +32,18 @@ public class BaseTest {
         System.out.println("Environment from config file: "+env);
         System.out.println(env+ " URL from YAML File: "+url);
 
-//        driver = DriverManager.getDriver(browser);
-//        driver.get(url);
-        WebDriverFactory.setDriver(browser);
-        getDriver().get(url);
+        String gridValue = ConfigurationReader.getProperty("grid");
+        String gridUrl = ConfigurationReader.getProperty("gridUrl");
+
+        if((gridValue.equalsIgnoreCase("true")) && (gridUrl!=null)){
+            WebDriverFactory.setRemoteDriver(browser,gridUrl);
+            getDriver().get(url);
+        }
+        else{
+            WebDriverFactory.setDriver(browser);
+            getDriver().get(url);
+        }
+
     }
 
     public WebDriver getDriver() {

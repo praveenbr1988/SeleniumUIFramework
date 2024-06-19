@@ -14,12 +14,13 @@ public class HomePageTest extends BaseTest {
     protected WebDriver driver;
 
     @Test
-    public void testGoogleSearch() {
+    public void testGoogleSearch() throws InterruptedException {
         logger.info("Google Search test started");
         driver = getDriver();
         HomePage homePage = new HomePage(driver);
         homePage.enterSearchTerm("Selenium WebDriver");
         String title = driver.getTitle();
+        Thread.sleep(10000);
         Assert.assertTrue(title.contains("Google"), "Title should contain 'Google'");
     }
 }

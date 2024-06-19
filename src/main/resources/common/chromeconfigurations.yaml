@@ -1,0 +1,12 @@
+chromeOptions:
+  disableGpu: true
+  disableExtensions: true
+  incognito: true
+  disableInfobars: true
+  startMaximized: true
+  ignoreCertificateErrors: true
+  windowSize: "1920,1080"
+  remoteDebuggingPort: 9222
+  disableDevShmUsage: true
+  # Uncomment if you want to run headless
+  # headless: true

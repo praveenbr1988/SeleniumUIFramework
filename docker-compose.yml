@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: standalone-chrome
+    ports:
+      - "4444:4444"
