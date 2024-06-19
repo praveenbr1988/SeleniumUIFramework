@@ -1,10 +1,7 @@
 package com.ui.base;
 
 import com.ui.pageObjects.HomePage;
-import com.ui.utils.ConfigurationReader;
-import com.ui.utils.DriverManager;
-import com.ui.utils.LoggerUtil;
-import com.ui.utils.YamlReader;
+import com.ui.utils.*;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -19,8 +16,9 @@ public class BaseTest {
     //String url = ConfigurationReader.getProperty("app.url");
 
 
-    @Parameters("browser")
+
     @BeforeMethod
+    @Parameters("browser")
     public void setUp(@Optional("chrome") String browser) {
         logger.info("Test setup started");
         String env = ConfigurationReader.getProperty("env");
@@ -31,13 +29,20 @@ public class BaseTest {
         System.out.println("Environment from config file: "+env);
         System.out.println(env+ " URL from YAML File: "+url);
 
-        driver = DriverManager.getDriver(browser);
-        driver.get(url);
+//        driver = DriverManager.getDriver(browser);
+//        driver.get(url);
+        WebDriverFactory.setDriver(browser);
+        getDriver().get(url);
+    }
+
+    public WebDriver getDriver() {
+        return WebDriverFactory.getDriver();
     }
 
     @AfterMethod
     public void tearDown() {
-        DriverManager.quitDriver();
+        //DriverManager.quitDriver();
+        WebDriverFactory.quitDriver();
         logger.info("Tear down completed");
     }
 }

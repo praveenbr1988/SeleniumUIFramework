@@ -3,3 +3,35 @@
 2024-06-18 23:02:20 [TestNG-tests-1] INFO  com.ui.tests.HomePageTest - Google Search test started
 2024-06-18 23:02:20 [TestNG-tests-1] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
 2024-06-18 23:02:20 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:30:52 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:30:56 [TestNG-tests-1] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:30:56 [TestNG-tests-1] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:30:57 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:31:41 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:31:44 [TestNG-tests-1] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:31:44 [TestNG-tests-1] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:31:44 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:32:47 [TestNG-tests-2] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:32:47 [TestNG-tests-3] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:32:47 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:32:51 [TestNG-tests-1] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:32:51 [TestNG-tests-3] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:32:51 [TestNG-tests-1] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:32:51 [TestNG-tests-3] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:32:52 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:32:54 [TestNG-tests-3] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:32:56 [TestNG-tests-2] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:32:56 [TestNG-tests-2] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:32:58 [TestNG-tests-2] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:34:52 [TestNG-tests-3] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:34:52 [TestNG-tests-2] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:34:52 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Test setup started
+2024-06-19 07:34:57 [TestNG-tests-1] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:34:57 [TestNG-tests-3] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:34:57 [TestNG-tests-3] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:34:57 [TestNG-tests-1] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:34:58 [TestNG-tests-1] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:34:59 [TestNG-tests-3] INFO  com.ui.base.BaseTest - Tear down completed
+2024-06-19 07:35:02 [TestNG-tests-2] INFO  com.ui.tests.HomePageTest - Google Search test started
+2024-06-19 07:35:02 [TestNG-tests-2] INFO  com.ui.pageObjects.HomePage - Entering search text: Selenium WebDriver
+2024-06-19 07:35:03 [TestNG-tests-2] INFO  com.ui.base.BaseTest - Tear down completed
