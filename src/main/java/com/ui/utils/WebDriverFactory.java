@@ -36,6 +36,7 @@ public class WebDriverFactory {
                 webDriver.set(new FirefoxDriver());
                 break;
             case "edge":
+                System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
                 EdgeOptions options = new EdgeOptions();
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
