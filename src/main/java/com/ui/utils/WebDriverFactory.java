@@ -1,6 +1,5 @@
 package com.ui.utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +20,7 @@ import java.util.Map;
 
 public class WebDriverFactory {
 
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         return webDriver.get();
@@ -38,7 +37,7 @@ public class WebDriverFactory {
             case "edge":
                 System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
                 EdgeOptions options = new EdgeOptions();
-                options.addArguments("--headless");
+                //options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
