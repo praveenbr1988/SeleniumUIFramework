@@ -65,11 +65,11 @@
             <artifactId>snakeyaml</artifactId>
             <version>2.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.ui</groupId>
-            <artifactId>web-automation</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.ui</groupId>-->
+<!--            <artifactId>web-automation</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <!-- Log4j 2 dependencies -->
         <dependency>
