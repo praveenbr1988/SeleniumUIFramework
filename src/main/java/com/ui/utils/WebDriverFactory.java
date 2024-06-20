@@ -36,7 +36,12 @@ public class WebDriverFactory {
                 webDriver.set(new FirefoxDriver());
                 break;
             case "edge":
-                webDriver.set(new EdgeDriver());
+                EdgeOptions options = new EdgeOptions();
+                options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                webDriver.set(new EdgeDriver(options));
                 break;
             default:
                 throw new IllegalArgumentException("Browser not supported: " + browser);
