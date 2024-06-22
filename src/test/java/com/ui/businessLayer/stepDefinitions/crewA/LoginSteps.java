@@ -1,6 +1,7 @@
 package com.ui.businessLayer.stepDefinitions.crewA;
 
 import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -29,6 +30,15 @@ public class LoginSteps {
     public void user_redirected_to_dashboard() {
         // Implement code to verify the user is redirected to the dashboard
         System.out.println("How r u");
+    }
+
+
+    @Then("Print the Search context values")
+    public void Print_the_Searchcontext_values() {
+        // Implement code to verify the user is redirected to the dashboard
+        System.out.println("Search Term: "+ ScenarioContext.getInstance().getScenarioContext("searchTerm"));
+        System.out.println("Title: "+ ScenarioContext.getInstance().getScenarioContext("Title"));
+
     }
 
 }

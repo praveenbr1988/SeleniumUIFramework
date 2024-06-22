@@ -20,8 +20,9 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="Edge Test">
-        <parameter name="browser" value="edge"/>
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite">
+        <parameter name="browser" value="FIREFOX"></parameter>
         <classes>
             <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
         </classes>

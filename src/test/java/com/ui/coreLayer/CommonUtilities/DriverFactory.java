@@ -1,5 +1,6 @@
 package com.ui.coreLayer.CommonUtilities;
 
+import com.ui.orchestrationLayer.enums.Browser;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,26 +25,26 @@ import java.util.Map;
 public class DriverFactory {
 
 
-    public static WebDriver setDriver(String browser) {
+    public static WebDriver setDriver(Browser browser) {
         WebDriver driver = null;
-        switch (browser.toLowerCase()) {
-            case "chrome":
+        switch (browser) {
+            case CHROME:
                 ChromeOptions cOptions = new ChromeOptions();
                 cOptions.addArguments("--silent");
                 driver = new ChromeDriver(cOptions);
                 driver.manage().window().maximize();
                 break;
-            case "chrome_headless":
+            case CHROME_HEADLESS:
                 ChromeOptions chOptions = new ChromeOptions();
                 chOptions.addArguments("--headless");
                 chOptions.addArguments("--window-size=1920,1080");
                 driver = new ChromeDriver(chOptions);
                 driver.manage().window().maximize();
                 break;
-            case "firefox":
+            case FIREFOX:
                 driver = new FirefoxDriver();
                 break;
-            case "edge":
+            case EDGE:
                 //System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
                 EdgeOptions Edoptions = new EdgeOptions();
                 Edoptions.addArguments("--disable-gpu");
@@ -60,12 +61,12 @@ public class DriverFactory {
 
     //Using Remote webdriver for Selenium grid execution
     //To watch Selenium grid console- use this IP- http://localhost:4444/grid/console
-    public static RemoteWebDriver setRemoteDriver(String browser,String gridUrl) throws MalformedURLException, FileNotFoundException {
+    public static RemoteWebDriver setRemoteDriver(Browser browser, String gridUrl) throws MalformedURLException, FileNotFoundException {
         URL hubUrl = new URL(gridUrl); // Replace {hub-ip} with your Hub's IP address or hostname in the config properties
         RemoteWebDriver driver = null;
 
-        switch (browser.toLowerCase()) {
-            case "chrome":
+        switch (browser) {
+            case CHROME:
                 ChromeOptions chromeOptions = loadChromeOptionsFromYaml();
                 DesiredCapabilities dc = new DesiredCapabilities(chromeOptions);
                 dc.setBrowserName("chrome");
@@ -73,12 +74,12 @@ public class DriverFactory {
                 driver = new RemoteWebDriver(hubUrl, dc);
                 driver.manage().window().maximize();
                 break;
-            case "firefox":
+            case FIREFOX:
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 driver = new RemoteWebDriver(hubUrl, firefoxOptions);
                 driver.manage().window().maximize();
                 break;
-            case "edge":
+            case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--start-maximized");
                 driver = new RemoteWebDriver(hubUrl, edgeOptions);

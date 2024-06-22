@@ -1,6 +1,7 @@
 package com.ui.businessLayer.pageObjects.crewA;
 
 import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,11 +27,14 @@ public class GooglePage {
     public void enterSearchTerm(String searchTerm) {
         logger.info("Entering search text: " + searchTerm);
         searchBox.sendKeys(searchTerm);
+        ScenarioContext.getInstance().setScenarioContext("searchTerm",searchTerm );
+
     }
 
     public void getBrowserTitle() throws InterruptedException {
         String title = driver.getTitle();
         Thread.sleep(5000);
+        ScenarioContext.getInstance().setScenarioContext("Title",title );
         Assert.assertTrue(title.contains("Google"), "Title should contain 'Google'");
     }
 
