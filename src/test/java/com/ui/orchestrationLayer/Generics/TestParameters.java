@@ -2,6 +2,7 @@ package com.ui.orchestrationLayer.Generics;
 
 import com.ui.orchestrationLayer.enums.Browser;
 import com.ui.orchestrationLayer.enums.ExecutionMode;
+import io.cucumber.core.gherkin.Feature;
 import io.cucumber.java.Scenario;
 
 
@@ -38,6 +39,7 @@ public class TestParameters {
         parameters.get().put("scenario", scenario);
     }
 
+
     public static Browser getBrowser() {
         return (Browser) parameters.get().get("browser");
     }
@@ -49,6 +51,8 @@ public class TestParameters {
     public static Scenario getScenario() {
         return (Scenario) parameters.get().get("scenario");
     }
+
+
 
     public void clearTestParameters(){
         parameters.get().clear();

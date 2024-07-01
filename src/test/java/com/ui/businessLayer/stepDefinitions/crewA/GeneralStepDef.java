@@ -32,5 +32,12 @@ public class GeneralStepDef {
 
     }
 
+    @Given ("^Extract Text from Image$")
+    public void extract_Text_from_Image() throws InterruptedException {
+        gPage.extracttxtFromImg();
+        logger.info("extracted successfully");
+
+    }
+
 
 }
