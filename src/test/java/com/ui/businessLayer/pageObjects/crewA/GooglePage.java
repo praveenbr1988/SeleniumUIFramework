@@ -1,6 +1,6 @@
 package com.ui.businessLayer.pageObjects.crewA;
 
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;

@@ -2,7 +2,7 @@ package com.ui.businessLayer.businesscomponents;
 
 import com.ui.coreLayer.CommonUtilities.ConfigurationReader;
 import com.ui.coreLayer.CommonUtilities.DriverManager;
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.coreLayer.CommonUtilities.YamlReader;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

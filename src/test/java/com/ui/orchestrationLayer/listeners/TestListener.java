@@ -1,6 +1,6 @@
 package com.ui.orchestrationLayer.listeners;
 
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;

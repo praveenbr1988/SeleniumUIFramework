@@ -1,4 +1,4 @@
-package com.ui.coreLayer.CommonUtilities;
+package com.ui.coreLayer.FrameworkConfigs;
 
 import com.ui.businessLayer.pageObjects.crewA.GooglePage;
 import org.apache.logging.log4j.Logger;

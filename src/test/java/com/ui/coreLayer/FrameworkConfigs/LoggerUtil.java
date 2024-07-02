@@ -1,4 +1,4 @@
-package com.ui.coreLayer.CommonUtilities;
+package com.ui.coreLayer.FrameworkConfigs;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

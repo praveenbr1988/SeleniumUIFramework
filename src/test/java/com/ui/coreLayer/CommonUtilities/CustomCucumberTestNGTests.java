@@ -1,17 +1,14 @@
 package com.ui.coreLayer.CommonUtilities;
 
-import com.ui.businessLayer.pageObjects.crewA.GooglePage;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.ProjectConfigurations;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import com.ui.orchestrationLayer.Generics.TestParameters;
 import com.ui.orchestrationLayer.enums.Browser;
-import io.cucumber.core.gherkin.Feature;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.FileNotFoundException;
@@ -22,7 +19,7 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
 
     private static final Logger logger = LoggerUtil.getLogger(CustomCucumberTestNGTests.class);
     protected static ThreadLocal<ITestContext> testListener = new ThreadLocal<ITestContext>();
-
+    protected static WebDriver driver = null;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -85,9 +82,15 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
     public static void setupBeforeTestCase(ITestContext context){
         System.out.println("TESTNG- Before Each Scenario/TestCase: "+ context.getName());
         logger.info("TESTNG- Before Each Scenario/TestCase: "+ context.getName());
-        WebDriver driver = null;
-        String gridValue = ConfigurationReader.getProperty("grid");
-        String gridUrl = ConfigurationReader.getProperty("gridUrl");
+        driver = chooseGridOrLocalDriver();
+        driver.manage().window().maximize();
+
+    }
+
+    public static WebDriver chooseGridOrLocalDriver(){
+        //WebDriver driver = null;
+        String gridValue = getTestParameter("grid"); //ConfigurationReader.getProperty("grid");
+        String gridUrl = getTestParameter("gridUrl"); //ConfigurationReader.getProperty("gridUrl");
         //Browser browser=TestParameters.getBrowser();
         Browser browser= Browser.valueOf(getTestParameter("browser"));
 
@@ -102,6 +105,8 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
             driver = DriverFactory.setDriver(browser);
         }
         DriverManager.getInstance().setDriver(driver);
+        return DriverManager.getInstance().getDriver();
+
     }
 
     public static void setupAfterTestCase(ITestContext context){

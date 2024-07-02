@@ -1,6 +1,6 @@
 package com.ui.businessLayer.stepDefinitions.commonReusableSteps;
 
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.orchestrationLayer.Generics.TestParameters;
 import io.cucumber.java.*;
 import org.apache.logging.log4j.Logger;

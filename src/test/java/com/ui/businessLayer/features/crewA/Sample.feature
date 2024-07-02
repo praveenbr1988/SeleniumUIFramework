@@ -8,10 +8,8 @@ Feature: Login
     And The user enters valid credentials
     Then The user should be redirected to the dashboard
 
-  Scenario: Successful Login2
-    Given The user is on the login page
-    And The user enters valid credentials
-    Then The user should be redirected to the dashboard
+  Scenario: Verify Reading Environments yaml file
+    Given Read Environments yaml file
 
   Scenario: Successful Login3
     Given The user is on the login page

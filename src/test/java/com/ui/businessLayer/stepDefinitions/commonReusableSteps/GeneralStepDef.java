@@ -1,9 +1,10 @@
-package com.ui.businessLayer.stepDefinitions.crewA;
+package com.ui.businessLayer.stepDefinitions.commonReusableSteps;
 
 import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.pageObjects.crewA.GooglePage;
 import com.ui.coreLayer.CommonUtilities.DriverManager;
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.TestEnvironmentConfigurations;
 import io.cucumber.java.en.Given;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,11 @@ public class GeneralStepDef {
         logger.info("Successfully launched");
     }
 
+    @Given("The test data is loaded from {string}")
+    public void the_test_data_is_loaded_from(String testDataPath) {
+        System.out.println("the Test data path: "+testDataPath);
+    }
+
     @Given ("^Search text in Google$")
     public void search_text_google() throws InterruptedException {
         gPage.enterSearchTerm("Hurray Cucumber Feature executed");
@@ -39,5 +45,11 @@ public class GeneralStepDef {
 
     }
 
+
+    @Given ("^Read Environments yaml file$")
+    public void read_yamlFile() throws Exception {
+        System.out.println(TestEnvironmentConfigurations.getTestURL("EMOQA"));
+        System.out.println(TestEnvironmentConfigurations.getTestDBURL("EMU-QA"));
+    }
 
 }

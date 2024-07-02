@@ -1,6 +1,6 @@
 package com.ui.businessLayer.stepDefinitions.crewA;
 
-import com.ui.coreLayer.CommonUtilities.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;

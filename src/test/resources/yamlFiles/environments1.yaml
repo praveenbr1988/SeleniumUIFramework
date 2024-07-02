@@ -1,0 +1,16 @@
+environments:
+  EMOQA: https://www.QAgoogle.com
+  EMOUAT: https://www.UATgoogle.com
+  EMORND: https://www.RNDgoogle.com
+  EMODEV: https://www.DEVgoogle.com
+
+databases:
+  EMO-QA:
+    connection: jdbc1
+    user: username1
+    password: S+5i0p1bpbIBQhSZgWpO0g==
+
+  EMU-QA:
+    connection: jdbc2
+    user: username2
+    password: S+5i0p1bpbIBQhSZgWpO0g==
