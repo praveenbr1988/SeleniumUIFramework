@@ -1,15 +1,13 @@
 package com.ui.coreLayer.FrameworkConfigs;
 
-public class DatabaseConfiguration {
+public class APIConfiguration {
 
-    private boolean OSAuth;
     private String url;
     private String username;
     private String password;
 
 
-    public DatabaseConfiguration(String url, String username, String password) throws Exception {
-        this.setOSAuth(false);
+    public APIConfiguration(String url, String username, String password) throws Exception {
         this.url=url;
         this.username = username;
         try {
@@ -18,7 +16,6 @@ public class DatabaseConfiguration {
             throw new Exception(e.getMessage());
         }
     }
-
 
 
     public String getUrl(){
@@ -33,11 +30,5 @@ public class DatabaseConfiguration {
         return this.password;
     }
 
-    private void setOSAuth(boolean oSAuth){
-        this.OSAuth = oSAuth;
-    }
 
-    public boolean isOSAuth(){
-        return this.OSAuth;
-    }
 }

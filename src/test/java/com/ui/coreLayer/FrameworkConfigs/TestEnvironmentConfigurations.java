@@ -40,11 +40,22 @@ public class TestEnvironmentConfigurations {
     public static DatabaseConfiguration getTestDBURL(String environment) throws Exception {
         try{
             EnvironmentConfiguration config = new EnvironmentConfiguration();
-            Map<String, String> dbCfg = config.getDatabseConfigs(environment);
+            Map<String, String> dbCfg = config.getDatabaseConfigs(environment);
             return buildDatabaseConfiguration((String)dbCfg.get("connection"), (String)dbCfg.get("user"), (String)dbCfg.get("password"));
         } catch(Exception var3){
             logger.info("Test Database Environment not found: "+var3.getMessage());
             throw new Exception("Test Database Environment not found: "+var3.getMessage());
+        }
+    }
+
+    public static APIConfiguration getAPIConfigurations(String environment) throws Exception {
+        try{
+            EnvironmentConfiguration config = new EnvironmentConfiguration();
+            Map<String, String> dbCfg = config.getAPIConfigs(environment);
+            return buildApiConfiguration((String)dbCfg.get("baseURL"), (String)dbCfg.get("user"), (String)dbCfg.get("password"));
+        } catch(Exception var3){
+            logger.info("Test API Environment not found: "+var3.getMessage());
+            throw new Exception("Test API Environment not found: "+var3.getMessage());
         }
     }
 
@@ -61,6 +72,22 @@ public class TestEnvironmentConfigurations {
         } catch(Exception var4){
             logger.info("Error occurred when trying to build the DB configurations " + var4.getMessage());
             throw new Exception("Error occurred when trying to build the DB configurations " + var4.getMessage());
+        }
+    }
+
+    public static APIConfiguration buildApiConfiguration(String baseURL, String username, String password) throws Exception {
+
+        try{
+            if(baseURL!=null && !baseURL.isEmpty() && username!= null && !username.isEmpty() && password!= null && !password.isEmpty()){
+                return new APIConfiguration(baseURL,username,password);
+            }
+            else{
+                throw new Exception("BaseURL or username or password for the API needs to be set properly");
+            }
+
+        } catch(Exception var4){
+            logger.info("Error occurred when trying to build the API configurations " + var4.getMessage());
+            throw new Exception("Error occurred when trying to build the API configurations " + var4.getMessage());
         }
     }
 

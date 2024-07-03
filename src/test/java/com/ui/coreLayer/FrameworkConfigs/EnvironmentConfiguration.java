@@ -1,6 +1,5 @@
 package com.ui.coreLayer.FrameworkConfigs;
 
-import com.ui.businessLayer.pageObjects.crewA.GooglePage;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
@@ -12,9 +11,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class EnvironmentConfiguration {
-    private static final Logger logger = LoggerUtil.getLogger(GooglePage.class);
+    private static final Logger logger = LoggerUtil.getLogger(EnvironmentConfiguration.class);
     private Map<String, String> environments;
     private Map<String,Map<String,String>> databaseConfigs;
+    private Map<String,Map<String,String>> apiConfigs;
     private static final String ENVIRONMENT_KEY = "environments";
     private static final String DATABASE_KEY = "databses";
     private static final String CONNECTION_KEY = "connection";
@@ -43,8 +43,10 @@ public class EnvironmentConfiguration {
         validateConfiguration(values);
         Map<String, Map<String, String>> tmpEnvironments = values.get("environments");
         Map<String, Map<String, String>> tmpDatabases = values.get("databases");
+        Map<String, Map<String, String>> tmpapis = values.get("apis");
         this.environments = parseEnvironments(tmpEnvironments);
         this.databaseConfigs = parseDatabases(tmpDatabases);
+        this.apiConfigs = parseApis(tmpapis);
 
     }
 
@@ -57,12 +59,21 @@ public class EnvironmentConfiguration {
         }
     }
 
-    public Map<String, String> getDatabseConfigs(String name) throws Exception {
+    public Map<String, String> getDatabaseConfigs(String name) throws Exception {
         try{
             return (Map) this.databaseConfigs.get(name);
         } catch(NullPointerException var3){
             logger.info("No Environment Configuration for "+name+" found. Check your environments.yaml file: "+var3.getMessage());
             throw new Exception("No DB Environment Configuration for "+name+" found. Check your environments.yaml file: "+var3.getMessage());
+        }
+    }
+
+    public Map<String, String> getAPIConfigs(String name) throws Exception {
+        try{
+            return (Map) this.apiConfigs.get(name);
+        } catch(NullPointerException var3){
+            logger.info("No API Configuration for "+name+" found. Check your environments.yaml file: "+var3.getMessage());
+            throw new Exception("No API Environment Configuration for "+name+" found. Check your environments.yaml file: "+var3.getMessage());
         }
     }
 
@@ -113,6 +124,32 @@ public class EnvironmentConfiguration {
 
         } catch(NullPointerException var6){
             logger.info("No Database Configurations detected");
+            return rtnMap;
+        }
+
+
+    }
+
+    private static Map<String, Map<String,String>> parseApis(Map<String, Map<String, String>> apiValues){
+        Map<String, Map<String, String>> rtnMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
+        try{
+            Iterator var2 = apiValues.entrySet().iterator();
+            while(true){
+                while(var2.hasNext()){
+                    Map.Entry<String, Map<String, String>> apiName = (Map.Entry) var2.next();
+                    Map<String, String> connectionCfg = new TreeMap(String.CASE_INSENSITIVE_ORDER);
+                    String keyName = (String)apiName.getKey();
+                    connectionCfg.put("baseURL", (String) ((Map)apiName.getValue()).get("baseURL"));
+                    connectionCfg.put("user", (String) ((Map)apiName.getValue()).get("user"));
+                    connectionCfg.put("password", (String) ((Map)apiName.getValue()).get("password"));
+                    rtnMap.put(keyName,connectionCfg);
+                }
+                return rtnMap;
+            }
+
+        } catch(NullPointerException var6){
+            logger.info("No api Configurations detected");
             return rtnMap;
         }
 

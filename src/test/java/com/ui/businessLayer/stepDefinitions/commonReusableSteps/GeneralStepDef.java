@@ -4,6 +4,7 @@ import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.pageObjects.crewA.GooglePage;
 import com.ui.coreLayer.CommonUtilities.DriverManager;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import com.ui.coreLayer.FrameworkConfigs.EncryptAndDecrypt;
 import com.ui.coreLayer.FrameworkConfigs.TestEnvironmentConfigurations;
 import io.cucumber.java.en.Given;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +51,21 @@ public class GeneralStepDef {
     public void read_yamlFile() throws Exception {
         System.out.println(TestEnvironmentConfigurations.getTestURL("EMOQA"));
         System.out.println(TestEnvironmentConfigurations.getTestDBURL("EMU-QA"));
+        System.out.println(TestEnvironmentConfigurations.getAPIConfigurations("EMU-QA-Agent"));
     }
+
+
+    @Given ("^Encrypt password (.+)$")
+    public void encrypt_Password(String passwordToEncrypt) throws Exception {
+        System.out.println("Encrypted Password is : "+ EncryptAndDecrypt.encrypt(passwordToEncrypt));
+
+    }
+
+    @Given ("^Decrypt password (.+)$")
+    public void decrypt_Password(String passwordToDecrypt) throws Exception {
+        System.out.println("Decrypted Password is : "+ EncryptAndDecrypt.decrypt(passwordToDecrypt));
+
+    }
+
 
 }
