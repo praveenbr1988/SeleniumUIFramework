@@ -53,7 +53,6 @@ public class TestListener implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         System.out.println("Test passed: " + result.getName());
         ExtentManager.getInstance().getExtent().log(Status.PASS, result.getMethod().getMethodName()+ " - Test Success");
-        ExtentManager.getInstance().removeExtentTestObject();
     }
 
     @Override
@@ -76,14 +75,12 @@ public class TestListener implements ITestListener {
         }
 
         ExtentManager.getInstance().getExtent().addScreenCaptureFromPath(screenshotPath);
-        ExtentManager.getInstance().removeExtentTestObject();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("Test skipped: " + result.getName());
         ExtentManager.getInstance().getExtent().log(Status.SKIP, result.getMethod().getMethodName()+ " - Test Skipped");
-        ExtentManager.getInstance().removeExtentTestObject();
     }
 
     @Override
@@ -97,6 +94,7 @@ public class TestListener implements ITestListener {
         logger.info("TESTNG Annotation-After Test Suite completed");
         ExtentManager.getInstance().getExtent().log(Status.INFO, " - Test Suite Completed");
         ExtentReportsNG.flushExtentReports(extentReport);
+        ExtentManager.getInstance().removeExtentTestObject();
 
     }
 

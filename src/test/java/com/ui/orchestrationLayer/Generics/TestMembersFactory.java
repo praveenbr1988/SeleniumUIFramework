@@ -54,4 +54,11 @@ public class TestMembersFactory {
         tltestStep.remove();
         tlSoftAssert.remove();
     }
+
+    public static void assertAll() {
+        if (tlSoftAssert.get() != null)
+            tlSoftAssert.get().assertAll();
+
+    }
+
 }

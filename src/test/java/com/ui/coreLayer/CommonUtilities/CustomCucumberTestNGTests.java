@@ -119,7 +119,7 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
         }
         TestParameters.getInstance().clearTestParameters();
         ScenarioContext.getInstance().clearScenarioContext();
-        TestMembersFactory.getSoftAssert().assertAll();
+        TestMembersFactory.assertAll();
 
     }
 

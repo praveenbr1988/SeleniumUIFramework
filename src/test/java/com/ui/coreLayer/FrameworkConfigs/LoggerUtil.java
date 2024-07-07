@@ -7,4 +7,7 @@ public class LoggerUtil {
     public static Logger getLogger(Class<?> clazz) {
         return LogManager.getLogger(clazz);
     }
+
+
+
 }
