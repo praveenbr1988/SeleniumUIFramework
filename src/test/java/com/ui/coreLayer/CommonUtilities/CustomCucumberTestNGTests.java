@@ -3,6 +3,7 @@ package com.ui.coreLayer.CommonUtilities;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.coreLayer.FrameworkConfigs.ProjectConfigurations;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;
+import com.ui.orchestrationLayer.Generics.TestMembersFactory;
 import com.ui.orchestrationLayer.Generics.TestParameters;
 import com.ui.orchestrationLayer.enums.Browser;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -19,7 +20,7 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
 
     private static final Logger logger = LoggerUtil.getLogger(CustomCucumberTestNGTests.class);
     protected static ThreadLocal<ITestContext> testListener = new ThreadLocal<ITestContext>();
-    protected static WebDriver driver = null;
+//    protected static WebDriver driver = null;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -71,10 +72,11 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
 
     public static void tearDownAfterSuite(){
 
-        if(DriverManager.getInstance().getDriver()!=null){
-            DriverManager.getInstance().getDriver().quit();
+        if(TestMembersFactory.getDriver()!=null){
+            TestMembersFactory.getDriver().quit();
         }
         logger.info("Tear down completed");
+        TestMembersFactory.removeObjects();
 
     }
 
@@ -82,8 +84,8 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
     public static void setupBeforeTestCase(ITestContext context){
         System.out.println("TESTNG- Before Each Scenario/TestCase: "+ context.getName());
         logger.info("TESTNG- Before Each Scenario/TestCase: "+ context.getName());
-        driver = chooseGridOrLocalDriver();
-        driver.manage().window().maximize();
+        TestMembersFactory.setDriver(chooseGridOrLocalDriver());
+        TestMembersFactory.getDriver().manage().window().maximize();
 
     }
 
@@ -93,7 +95,7 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
         String gridUrl = getTestParameter("gridUrl"); //ConfigurationReader.getProperty("gridUrl");
         //Browser browser=TestParameters.getBrowser();
         Browser browser= Browser.valueOf(getTestParameter("browser"));
-
+        WebDriver driver;
         if((gridValue.equalsIgnoreCase("true")) && (gridUrl!=null)){
             try {
                 driver = DriverFactory.setRemoteDriver(browser, gridUrl);
@@ -117,10 +119,11 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
         }
         TestParameters.getInstance().clearTestParameters();
         ScenarioContext.getInstance().clearScenarioContext();
+        TestMembersFactory.getSoftAssert().assertAll();
 
     }
 
-    private static String getTestParameter(String sParameter){
+    public static String getTestParameter(String sParameter){
 
         try {
             if ((System.getProperty(sParameter) != null) && (!System.getProperty(sParameter).isEmpty())) {
