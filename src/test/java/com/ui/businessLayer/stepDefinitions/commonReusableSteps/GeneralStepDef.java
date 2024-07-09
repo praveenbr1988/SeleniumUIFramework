@@ -1,11 +1,13 @@
 package com.ui.businessLayer.stepDefinitions.commonReusableSteps;
 
+import com.aventstack.extentreports.Status;
 import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.pageObjects.crewA.GooglePage;
 import com.ui.coreLayer.CommonUtilities.DriverManager;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.coreLayer.FrameworkConfigs.EncryptAndDecrypt;
 import com.ui.coreLayer.FrameworkConfigs.TestEnvironmentConfigurations;
+import com.ui.orchestrationLayer.Generics.TestMembersFactory;
 import io.cucumber.java.en.Given;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -52,6 +54,7 @@ public class GeneralStepDef {
         System.out.println(TestEnvironmentConfigurations.getTestURL("EMOQA"));
         System.out.println(TestEnvironmentConfigurations.getTestDBURL("EMU-QA"));
         System.out.println(TestEnvironmentConfigurations.getAPIConfigurations("EMU-QA-Agent"));
+        TestMembersFactory.getTestStep().log(Status.PASS, "Able to read Yaml file");
     }
 
 

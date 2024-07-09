@@ -34,7 +34,7 @@ public class TestListener implements ITestListener {
     public void onStart(ITestContext context) {
         System.out.println("TestNG Annotation-Before TEst  Suite: " + context.getName());
         logger.info("TESTNG Annotation-Before Test Suite ");
-        extentReport = ExtentReportsNG.setupExtentReport();
+        TestMembersFactory.setReport(ExtentReportsNG.setupExtentReport());
         setTestListener(context);
 
     }
@@ -43,7 +43,10 @@ public class TestListener implements ITestListener {
     public void onTestStart(ITestResult result) {
         System.out.println("TESTNG- Before Each Scenario/TestCase: "+ result.getName());
         logger.info("TESTNG- Before Each Scenario/TestCase: "+ result.getName());
-        ExtentManager.getInstance().setExtent(extentReport.createTest(result.getMethod().getMethodName()));
+
+        ExtentManager.getInstance().setExtent(TestMembersFactory.getReport().createTest(result.getMethod().getMethodName()));
+        TestMembersFactory.setTestStep(ExtentManager.getInstance().getExtent());
+
         TestMembersFactory.setSoftAssert();
         //setTestParameters(result);
     }
@@ -52,14 +55,15 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("Test passed: " + result.getName());
-        ExtentManager.getInstance().getExtent().log(Status.PASS, result.getMethod().getMethodName()+ " - Test Success");
+        //ExtentManager.getInstance().getExtent().log(Status.PASS, result.getMethod().getMethodName()+ " - Test Success");
+        TestMembersFactory.getTestStep().log(Status.PASS, result.getMethod().getMethodName()+ " - Test Success");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Test failed: " + result.getName());
-        ExtentManager.getInstance().getExtent().log(Status.FAIL, result.getMethod().getMethodName()+ " - Test Failed..."+result.getThrowable());
-
+        //ExtentManager.getInstance().getExtent().log(Status.FAIL, result.getMethod().getMethodName()+ " - Test Failed..."+result.getThrowable());
+        TestMembersFactory.getTestStep().log(Status.FAIL, result.getMethod().getMethodName()+ " - Test Failed..."+result.getThrowable());
 
         //Add Screenshot
         File src = ((TakesScreenshot)TestMembersFactory.getDriver()).getScreenshotAs(OutputType.FILE);
@@ -74,13 +78,15 @@ public class TestListener implements ITestListener {
             throw new RuntimeException(e);
         }
 
-        ExtentManager.getInstance().getExtent().addScreenCaptureFromPath(screenshotPath);
+        //ExtentManager.getInstance().getExtent().addScreenCaptureFromPath(screenshotPath);
+        TestMembersFactory.getTestStep().addScreenCaptureFromPath(screenshotPath);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("Test skipped: " + result.getName());
-        ExtentManager.getInstance().getExtent().log(Status.SKIP, result.getMethod().getMethodName()+ " - Test Skipped");
+        //ExtentManager.getInstance().getExtent().log(Status.SKIP, result.getMethod().getMethodName()+ " - Test Skipped");
+        TestMembersFactory.getTestStep().log(Status.SKIP, result.getMethod().getMethodName()+ " - Test Skipped");
     }
 
     @Override
@@ -92,9 +98,11 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext context) {
         System.out.println("TestNG Annotation-Test Suite finished: " + context.getName());
         logger.info("TESTNG Annotation-After Test Suite completed");
-        ExtentManager.getInstance().getExtent().log(Status.INFO, " - Test Suite Completed");
-        ExtentReportsNG.flushExtentReports(extentReport);
+        //ExtentManager.getInstance().getExtent().log(Status.INFO, " - Test Suite Completed");
+        TestMembersFactory.getTestStep().log(Status.INFO, " - Test Suite Completed");
+        ExtentReportsNG.flushExtentReports(TestMembersFactory.getReport());
         ExtentManager.getInstance().removeExtentTestObject();
+        TestMembersFactory.removeObjects();
 
     }
 
