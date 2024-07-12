@@ -1,9 +1,27 @@
-default: dev
-
 environments:
-  dev:
-    app.url: "http://www.devexample.com"
-  qa:
-    app.url: "http://www.google.com"
-  prod:
-    app.url: "http://www.prodexample.com"
+  APP-QA: https://www.google.com
+  APP-UAT: https://www.UATgoogle.com
+  APP-RND: https://www.RNDgoogle.com
+  APP-DEV: https://www.DEVgoogle.com
+
+databases:
+  EMO-QA:
+    connection: jdbc1
+    user: username1
+    password: pTqQfCyqiqDyyyvU293ZjQ==
+
+  EMU-QA:
+    connection: jdbc2
+    user: username2
+    password: pTqQfCyqiqDyyyvU293ZjQ==
+
+apis:
+  EMU-QA-Manager:
+    baseURL: https://www.QAgoogle.com
+    user: manager
+    password: pTqQfCyqiqDyyyvU293ZjQ==
+
+  EMU-QA-Agent:
+    baseURL: https://www.QAgoogle.com
+    user: agent
+    password: pTqQfCyqiqDyyyvU293ZjQ==

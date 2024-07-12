@@ -3,8 +3,6 @@ package com.ui.coreLayer.FrameworkConfigs;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.ui.coreLayer.CommonUtilities.CustomCucumberTestNGTests;
-
 
 
 import java.text.SimpleDateFormat;

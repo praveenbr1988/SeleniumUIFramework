@@ -5,8 +5,8 @@ Feature: Login
     And Search text in Google
     Then Print the Search context values
 
-    @Sample
+@Login
   Scenario: Successful Login
-    Given I launch the "Google"
+    Given I launch the "FB"
     And Search text in Google
     Then Print the Search context values

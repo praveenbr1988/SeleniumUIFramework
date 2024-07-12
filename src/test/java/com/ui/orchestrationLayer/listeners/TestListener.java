@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.ui.coreLayer.CommonUtilities.CustomCucumberTestNGTests.setTestListener;
+import static com.ui.coreLayer.FrameworkConfigs.CustomCucumberTestNGTests.setTestListener;
 
 
 

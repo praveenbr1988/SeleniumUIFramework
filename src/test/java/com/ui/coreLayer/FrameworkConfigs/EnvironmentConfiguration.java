@@ -24,7 +24,7 @@ public class EnvironmentConfiguration {
     private static final String PORT = "port";
 
     public EnvironmentConfiguration() throws Exception {
-        this(new File("").getAbsolutePath() + "/src/test/resources/yamlFiles/environments1.yaml");
+        this(new File("").getAbsolutePath() + "/src/test/resources/yamlFiles/environments.yaml");
 
     }
 

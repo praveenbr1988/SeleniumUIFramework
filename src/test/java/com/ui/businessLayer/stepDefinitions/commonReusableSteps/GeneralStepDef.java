@@ -3,7 +3,7 @@ package com.ui.businessLayer.stepDefinitions.commonReusableSteps;
 import com.aventstack.extentreports.Status;
 import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.pageObjects.crewA.GooglePage;
-import com.ui.coreLayer.CommonUtilities.DriverManager;
+import com.ui.coreLayer.FrameworkConfigs.DriverManager;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.coreLayer.FrameworkConfigs.EncryptAndDecrypt;
 import com.ui.coreLayer.FrameworkConfigs.TestEnvironmentConfigurations;
@@ -23,7 +23,7 @@ public class GeneralStepDef {
     GooglePage gPage = new GooglePage(driver);
 
     @Given ("^I launch the (.+)$")
-    public void i_launch_the_application(String application) throws InterruptedException {
+    public void i_launch_the_application(String application) throws Exception {
         general.launchApplication(application);
         logger.info("Successfully launched");
     }

@@ -1,4 +1,4 @@
-package com.ui.coreLayer.CommonUtilities;
+package com.ui.coreLayer.FrameworkConfigs;
 
 import com.ui.orchestrationLayer.enums.Browser;
 import org.openqa.selenium.Platform;

@@ -1,4 +1,4 @@
-package com.ui.coreLayer.CommonUtilities;
+package com.ui.coreLayer.FrameworkConfigs;
 
 import org.openqa.selenium.WebDriver;
 

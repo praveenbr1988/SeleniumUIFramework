@@ -1,7 +1,5 @@
-package com.ui.coreLayer.CommonUtilities;
+package com.ui.coreLayer.FrameworkConfigs;
 
-import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
-import com.ui.coreLayer.FrameworkConfigs.ProjectConfigurations;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;
 import com.ui.orchestrationLayer.Generics.TestMembersFactory;
 import com.ui.orchestrationLayer.Generics.TestParameters;
@@ -90,11 +88,9 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
     }
 
     public static WebDriver chooseGridOrLocalDriver(){
-        //WebDriver driver = null;
         String gridValue = getTestParameter("grid"); //ConfigurationReader.getProperty("grid");
         String gridUrl = getTestParameter("gridUrl"); //ConfigurationReader.getProperty("gridUrl");
-        //Browser browser=TestParameters.getBrowser();
-        Browser browser= Browser.valueOf(getTestParameter("browser"));
+        Browser browser= Browser.valueOf(getTestParameter("browser").toUpperCase());
         WebDriver driver;
         if((gridValue.equalsIgnoreCase("true")) && (gridUrl!=null)){
             try {

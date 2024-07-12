@@ -22,7 +22,7 @@
 
     <test verbose="1" preserve-order="true"
           name="Regression Suite">
-        <parameter name="browser" value="FIREFOX"></parameter>
+        <parameter name="browser" value="CHROME"></parameter>
         <classes>
             <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
         </classes>
