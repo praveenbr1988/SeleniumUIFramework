@@ -31,8 +31,11 @@ public class DriverFactory {
             case CHROME:
                 ChromeOptions cOptions = new ChromeOptions();
                 cOptions.addArguments("--silent");
+                cOptions.addArguments("--start-maximized");
+                cOptions.addArguments("--disable-notifications");
+                cOptions.addArguments("--disable-popup-blocking");
                 driver = new ChromeDriver(cOptions);
-                driver.manage().window().maximize();
+//                driver.manage().window().maximize();
                 break;
             case CHROME_HEADLESS:
                 ChromeOptions chOptions = new ChromeOptions();

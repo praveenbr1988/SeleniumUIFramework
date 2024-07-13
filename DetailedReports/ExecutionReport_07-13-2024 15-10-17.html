@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">ReportName</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jul 11, 2024 08:23:38 PM</span></a>
+<a href="#"><span class="badge badge-primary">Jul 13, 2024 03:10:17 PM</span></a>
 </li>
 </ul>
 </div>
@@ -66,7 +66,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -74,25 +74,25 @@
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="fail" test-id="1"
+        <li class="test-item"  status="pass" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">runScenario</p>
             <p class="text-sm">
-              <span>8:23:44 PM</span> / <span>00:00:05:708</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>3:10:20 PM</span> / <span>00:00:03:780</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">runScenario</h5>
-<span class='badge badge-success'>07.11.2024 8:23:44 PM</span>
-<span class='badge badge-danger'>07.11.2024 8:23:49 PM</span>
-<span class='badge badge-default'>00:00:05:708</span>
+<h5 class="test-status text-pass">runScenario</h5>
+<span class='badge badge-success'>07.13.2024 3:10:20 PM</span>
+<span class='badge badge-danger'>07.13.2024 3:10:24 PM</span>
+<span class='badge badge-default'>00:00:03:780</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -102,7 +102,7 @@
 </div>    <div class="row mb-3"><div class="col-md-3">
     
 
-<img data-featherlight='D:\Projects\IdeaProjects\UIProject\SeleniumUIFramework/Reports/Screenshots/07-11-2024 20-23-46.jpeg' src="D:\Projects\IdeaProjects\UIProject\SeleniumUIFramework/Reports/Screenshots/07-11-2024 20-23-46.jpeg">
+<img data-featherlight='D:\Projects\IdeaProjects\UIProject\SeleniumUIFramework/Screenshots/07-13-2024 15-10-22.png' src="D:\Projects\IdeaProjects\UIProject\SeleniumUIFramework/Screenshots/07-13-2024 15-10-22.png">
   
     
 
@@ -112,22 +112,71 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>8:23:45 PM</td>
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:10:21 PM</td>
         <td>
-          runScenario - Test Failed...org.openqa.selenium.NoSuchElementException: Unable to locate element: *[name='q']
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.20.0', revision: '866c76ca80'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Command: [3dc1856a-047e-4ee2-9b29-64a369243628, findElement {using=name, value=q}]
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 102.0, moz:accessibilityChecks: false, moz:buildID: 20220623063721, moz:debuggerAddress: localhost:43947, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 8576, moz:profile: C:\Users\techi\AppData\Loca..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, platformVersion: 10.0, proxy: Proxy(), se:cdp: ws://localhost:43947/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 3dc1856a-047e-4ee2-9b29-64a369243628
+          <b><p align='center' style='border: 2px solid #FFFFFF; border-image: none; background-color: #333333; color: #D3D3D3;'>------ Unsuccessful login with invalid credentials : Scenario Start ------</p></b>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:21 PM</td>
+        <td>
+           Application Launched : https://www.saucedemo.com/
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:21 PM</td>
+        <td>
+          Entering username: invalid_user
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:21 PM</td>
+        <td>
+          Entering password: invalid_user
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:22 PM</td>
+        <td>
+          Clicking login button
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>8:23:49 PM</td>
+        <td>3:10:22 PM</td>
+        <td>
+          Checking Error message displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:22 PM</td>
+        <td>
+          <TABLE style='border: 2px solid #FFFFFF; table-layout: fixed; background-color: #333333; color: #D3D3D3;'><TR style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3;'><TH style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'><font size='2'>Field Name</TH><TH style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'><font size='2'>Expected Value</TH><TH style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'><font size='2'>Actual Value</TH></TR><TR style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3;'><TD style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'>Error Message</TD><TD style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'>UserName</TD><TD style='border: 2px solid #FFFFFF; background-color: #333333; color: #D3D3D3; width: 120px'>USERNAME</TD></TR></TABLE>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:10:22 PM</td>
+        <td>
+          <b><p align='center' style='border: 2px solid #FFFFFF; border-image: none; background-color: #333333; color: #D3D3D3;'>------ Unsuccessful login with invalid credentials : Scenario End ------</p></b>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>3:10:22 PM</td>
+        <td>
+          runScenario - Test Success
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>3:10:24 PM</td>
         <td>
            - Test Suite Completed
         </td>
@@ -151,25 +200,25 @@ Session ID: 3dc1856a-047e-4ee2-9b29-64a369243628
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jul 11, 2024 08:23:38 PM</h3>
+<h3>Jul 13, 2024 03:10:17 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jul 11, 2024 08:23:49 PM</h3>
+<h3>Jul 13, 2024 03:10:24 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -185,12 +234,12 @@ Session ID: 3dc1856a-047e-4ee2-9b29-64a369243628
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'>
-<b>0</b> tests passed
+<div><small data-tooltip='100%'>
+<b>1</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='100%'><b>1</b> tests failed,
+<small data-tooltip='0%'><b>0</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -208,10 +257,10 @@ Session ID: 3dc1856a-047e-4ee2-9b29-64a369243628
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'><b>0</b> events passed</small></div>
+<div><small data-tooltip='60%'><b>6</b> events passed</small></div>
 <div>
-<small data-tooltip='50%'><b>1</b> events failed,
-<b data-tooltip='%'>1</b> others
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>4</b> others
 </small>
 </div>
 </div>
@@ -227,7 +276,7 @@ Session ID: 3dc1856a-047e-4ee2-9b29-64a369243628
 </div></div>
 <script>
 var timeline = {
-"runScenario":5.708
+"runScenario":3.78
 };
 </script>
 <div class="row">
@@ -258,8 +307,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 0,
-failParent: 1,
+passParent: 1,
+failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -275,11 +324,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 0,
-failEvents: 1,
+passEvents: 6,
+failEvents: 0,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 1
+infoEvents: 4
 };
 </script>        </div>
       </div>

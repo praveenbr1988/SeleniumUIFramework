@@ -18,7 +18,7 @@ public class ExtentReportsNG {
         SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy HH-mm-ss");
         Date date =new Date();
         String actualDate = format.format(date);
-        String reportPath = System.getProperty("user.dir") + "/Reports/ExecutionReport_" + actualDate + ".html";
+        String reportPath = System.getProperty("user.dir") + "/DetailedReports/ExecutionReport_" + actualDate + ".html";
         ExtentSparkReporter sparkReport = new ExtentSparkReporter(reportPath);
         extent = new ExtentReports();
         extent.attachReporter(sparkReport);

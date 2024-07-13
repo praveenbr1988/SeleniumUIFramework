@@ -1,6 +1,7 @@
 package com.ui.businessLayer.pageObjects.crewB;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.ui.businessLayer.stepDefinitions.crewB.CartSteps;
 import com.ui.coreLayer.FrameworkConfigs.BaseCucumberTest;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
@@ -30,6 +31,7 @@ public class ProductsPage extends BaseCucumberTest {
 
     public void addItemToCart() {
         logger.info("Adding item to cart");
+        testStep.log(Status.INFO, "Adding item to cart");
         inventoryItem.click();
     }
 
@@ -39,6 +41,7 @@ public class ProductsPage extends BaseCucumberTest {
 
     public void verifyLandingPage(){
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
+        testStep.log(Status.PASS, "User redirected to products page");
         logger.info("User redirected to products page");
     }
 

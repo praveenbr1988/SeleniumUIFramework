@@ -1,15 +1,19 @@
 package com.ui.businessLayer.stepDefinitions.crewB;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.businesscomponents.PageObjectManager;
 import com.ui.businessLayer.pageObjects.crewB.LoginPage;
 import com.ui.businessLayer.pageObjects.crewB.ProductsPage;
+import com.ui.coreLayer.CommonUtilities.CommonMethods;
+import com.ui.coreLayer.CommonUtilities.ScreenShotUtil;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import com.ui.orchestrationLayer.Generics.TestMembersFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginSteps {
@@ -18,7 +22,7 @@ public class LoginSteps {
     private LoginPage loginPage = PageObjectManager.getPageObject(LoginPage.class);
     private ProductsPage productsPage = PageObjectManager.getPageObject(ProductsPage.class);
     private GeneralComponents general = new GeneralComponents();
-
+    protected ExtentTest testStep = TestMembersFactory.getTestStep();
 
     @When("the user enters valid credentials")
     public void theUserEntersValidCredentials() {
@@ -37,7 +41,6 @@ public class LoginSteps {
     @When("clicks the login button")
     public void clicksTheLoginButton() {
         loginPage.clickLogin();
-        //loginPage.clickLogin();
         logger.info("Clicked login button");
     }
 
@@ -49,7 +52,9 @@ public class LoginSteps {
 
     @Then("an error message should be displayed")
     public void anErrorMessageShouldBeDisplayed() {
+        testStep.log(Status.INFO, "Checking Error message displayed").addScreenCaptureFromPath(ScreenShotUtil.saveScreenShot());
         Assert.assertTrue(loginPage.getErrorMessage().contains("Username and password do not match"));
+        testStep.log(Status.PASS, CommonMethods.formatResultsInTable("Error Message", "UserName", "USERNAME"));
         logger.info("Error message displayed");
     }
 

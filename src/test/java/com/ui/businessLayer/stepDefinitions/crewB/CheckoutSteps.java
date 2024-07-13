@@ -46,7 +46,7 @@ public class CheckoutSteps {
 
     @Then("the order confirmation should be displayed")
     public void theOrderConfirmationShouldBeDisplayed() {
-        Assert.assertTrue(checkoutPage.getConfirmationMessage().contains("THANK YOU FOR YOUR ORDER"));
+        Assert.assertTrue(checkoutPage.getConfirmationMessage().contains("Thank you for your order!"));
         logger.info("Order confirmation displayed");
     }
 

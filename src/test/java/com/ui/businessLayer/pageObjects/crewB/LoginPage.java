@@ -1,6 +1,7 @@
 package com.ui.businessLayer.pageObjects.crewB;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.ui.businessLayer.stepDefinitions.crewB.CartSteps;
 import com.ui.coreLayer.FrameworkConfigs.BaseCucumberTest;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
@@ -35,16 +36,19 @@ public class LoginPage extends BaseCucumberTest {
 
     public void enterUsername(String user) {
         logger.info("Entering username: " + user);
+        testStep.log(Status.PASS, "Entering username: " + user);
         username.sendKeys(user);
     }
 
     public void enterPassword(String pass) {
         logger.info("Entering password: " + pass);
+        testStep.log(Status.PASS, "Entering password: " + pass);
         password.sendKeys(pass);
     }
 
     public void clickLogin() {
         logger.info("Clicking login button");
+        testStep.log(Status.PASS, "Clicking login button");
         loginButton.click();
     }
 

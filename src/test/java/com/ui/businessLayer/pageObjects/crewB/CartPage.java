@@ -20,11 +20,14 @@ public class CartPage extends BaseCucumberTest {
         PageFactory.initElements(this.driver, this);
     }
 
-    @FindBy(id = "checkout")
-    WebElement checkoutButton;
+    @FindBy(id = "shopping_cart_container")
+    WebElement cartBtn;
 
-    @FindBy(className = "cart_item")
-    WebElement cartItem;
+    @FindBy(id = "checkout")
+    WebElement checkoutBtn;
+
+    @FindBy(xpath = "//button[text()='Remove']")
+    WebElement removeBtn;
 
     @FindBy(css = ".shopping_cart_badge")
     WebElement cartBadge;
@@ -32,16 +35,18 @@ public class CartPage extends BaseCucumberTest {
 
     public void clickCheckout() {
         logger.info("Clicking checkout button");
-        checkoutButton.click();
+        cartBtn.click();
+        checkoutBtn.click();
     }
 
     public boolean isCartItemPresent() {
-        return cartItem.isDisplayed();
+        return cartBadge.isDisplayed();
     }
 
     public void removeCartItem() {
         logger.info("Removing item from cart");
-        cartItem.click();
+        cartBtn.click();
+        removeBtn.click();
     }
 
     public String getCartItemCount() {
