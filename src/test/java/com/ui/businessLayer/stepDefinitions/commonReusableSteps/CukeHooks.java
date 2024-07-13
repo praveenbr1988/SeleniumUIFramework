@@ -1,11 +1,14 @@
 package com.ui.businessLayer.stepDefinitions.commonReusableSteps;
 
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import com.ui.orchestrationLayer.Generics.TestMembersFactory;
 import com.ui.orchestrationLayer.Generics.TestParameters;
 import io.cucumber.java.*;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 
 import java.io.IOException;
@@ -50,7 +53,16 @@ public class CukeHooks {
         //addScreenshot(scenario);
         logger.info("Cuke Hooks-After Step");
         System.out.println("Cuke Hooks-After Step: " + TestParameters.getScenario().getName());
+        if(scenario.isFailed())
+        {
+            TestMembersFactory.getTestStep().addScreenCaptureFromBase64String(getBase64Screenshot());
+        }
     }
 
+
+    public String getBase64Screenshot()
+    {
+        return ((TakesScreenshot) TestMembersFactory.getDriver()).getScreenshotAs(OutputType.BASE64);
+    }
 
 }

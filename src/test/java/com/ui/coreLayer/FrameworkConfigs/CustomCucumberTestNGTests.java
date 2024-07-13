@@ -6,6 +6,8 @@ import com.ui.orchestrationLayer.Generics.TestParameters;
 import com.ui.orchestrationLayer.enums.Browser;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -149,6 +151,8 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
 //        //ExecutionMode executionMode = ExecutionMode.valueOf(allParameters.get("executionMode"));
 //        //TestParameters.setExecutionMode(executionMode);
 //    }
+
+
 
 
     }

@@ -22,7 +22,7 @@ public class GeneralStepDef {
     GeneralComponents general = new GeneralComponents();
     GooglePage gPage = new GooglePage(driver);
 
-    @Given ("^I launch the (.+)$")
+    @Given ("^I launch the (.+) application$")
     public void i_launch_the_application(String application) throws Exception {
         general.launchApplication(application);
         logger.info("Successfully launched");
