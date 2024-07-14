@@ -1,4 +1,4 @@
-package com.ui.businessLayer.pageObjects.crewA;
+package com.ui.businessLayer.pages.crewA;
 
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import com.ui.orchestrationLayer.Generics.ScenarioContext;

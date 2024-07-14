@@ -1,8 +1,7 @@
-package com.ui.businessLayer.pageObjects.crewB;
+package com.ui.businessLayer.pages.crewB;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.ui.businessLayer.stepDefinitions.crewB.CartSteps;
 import com.ui.coreLayer.FrameworkConfigs.BaseCucumberTest;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import org.apache.logging.log4j.Logger;

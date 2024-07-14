@@ -2,15 +2,14 @@ package com.ui.businessLayer.stepDefinitions.crewB;
 
 import com.ui.businessLayer.businesscomponents.GeneralComponents;
 import com.ui.businessLayer.businesscomponents.PageObjectManager;
-import com.ui.businessLayer.pageObjects.crewB.CartPage;
-import com.ui.businessLayer.pageObjects.crewB.LoginPage;
-import com.ui.businessLayer.pageObjects.crewB.ProductsPage;
+import com.ui.businessLayer.pages.crewB.CartPage;
+import com.ui.businessLayer.pages.crewB.LoginPage;
+import com.ui.businessLayer.pages.crewB.ProductsPage;
 import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CartSteps {

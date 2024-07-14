@@ -1,6 +1,6 @@
 package com.ui.coreLayer.FrameworkConfigs;
 
-import com.ui.businessLayer.pageObjects.crewA.GooglePage;
+import com.ui.businessLayer.pages.crewA.GooglePage;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.error.YAMLException;
 
