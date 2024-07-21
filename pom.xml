@@ -1,7 +1,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.ui</groupId>
     <artifactId>web-automation</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -15,10 +14,44 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <cucumber.version>7.18.0</cucumber.version>
-        <org.apache.maven.plugins.maven-surefire-plugin.version>3.1.2
-        </org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.apache.maven.plugins.maven-surefire-plugin.version>3.1.2</org.apache.maven.plugins.maven-surefire-plugin.version>
         <suiteXMLFile>src/test/java/com/ui/orchestrationLayer/testngxmls/crewA/RegressionSuite.xml</suiteXMLFile>
     </properties>
+
+
+    <profiles>
+        <!-- to run one of the profiles defined below, simply add -P name_of_the_profile
+            to mvn command ie.: mvn clean test -P runRegressionTest -->
+        <profile>
+            <id>runRegressionTest</id>
+            <properties>
+                <testNG.suiteXmlFile>src/test/java/com/ui/orchestrationLayer/testngxmls/crewA/RegressionSuite.xml</testNG.suiteXmlFile>
+            </properties>
+            <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-testng</artifactId>
+                            <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+            </build>
+
+        </profile>
+    </profiles>
+
 
     <dependencies>
 
@@ -171,47 +204,56 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <!-- Maven Compiler Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-
-            <!-- Surefire Plugin for running TestNG tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXMLFile}</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-                </configuration>
-            </plugin>
-
-            <!-- Allure Report Plugin -->
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            &lt;!&ndash; Maven Compiler Plugin &ndash;&gt;-->
 <!--            <plugin>-->
-<!--                <groupId>io.qameta.allure</groupId>-->
-<!--                <artifactId>allure-maven</artifactId>-->
-<!--                <version>2.10.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>allure-report</id>-->
-<!--                        <phase>verify</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>report</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.8.1</version>-->
+<!--                <configuration>-->
+<!--                    <source>17</source>-->
+<!--                    <target>17</target>-->
+<!--                </configuration>-->
 <!--            </plugin>-->
-        </plugins>
-    </build>
+
+<!--            &lt;!&ndash; Surefire Plugin for running TestNG tests &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>${suiteXMLFile}</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+<!--                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+
+
+
 </project>
+
+
+
+
+        <!-- Allure Report Plugin -->
+        <!--            <plugin>-->
+        <!--                <groupId>io.qameta.allure</groupId>-->
+        <!--                <artifactId>allure-maven</artifactId>-->
+        <!--                <version>2.10.0</version>-->
+        <!--                <executions>-->
+        <!--                    <execution>-->
+        <!--                        <id>allure-report</id>-->
+        <!--                        <phase>verify</phase>-->
+        <!--                        <goals>-->
+        <!--                            <goal>report</goal>-->
+        <!--                        </goals>-->
+        <!--                    </execution>-->
+        <!--                </executions>-->
+        <!--            </plugin>-->

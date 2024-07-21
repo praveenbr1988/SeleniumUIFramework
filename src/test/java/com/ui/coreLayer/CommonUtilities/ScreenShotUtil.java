@@ -21,6 +21,19 @@ public class ScreenShotUtil {
         return Base64.getEncoder().encodeToString(ts.getScreenshotAs(OutputType.BYTES));
     }
 
+    public static byte[] getBase64ScreenshotinBytes() {
+
+        try {
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
+            return fileContent;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public static String saveScreenShot() {
 
         File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

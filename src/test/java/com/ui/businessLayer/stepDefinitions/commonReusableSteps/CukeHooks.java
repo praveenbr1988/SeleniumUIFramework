@@ -58,6 +58,7 @@ public class CukeHooks {
         if(scenario.isFailed())
         {
             TestMembersFactory.getTestStep().addScreenCaptureFromBase64String(ScreenShotUtil.getBase64Screenshot());
+            scenario.attach(ScreenShotUtil.getBase64ScreenshotinBytes(),"image/png", "failed");
         }
     }
 
