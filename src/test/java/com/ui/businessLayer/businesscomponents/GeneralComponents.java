@@ -19,7 +19,7 @@ public class GeneralComponents {
     public void launchApplication(String application) throws Exception {
         //String env = ConfigurationReader.getProperty("env");
         String env = getTestParameter("env").toUpperCase();
-        String url =TestEnvironmentConfigurations.getTestURL("APP-"+env);
+        String url =TestEnvironmentConfigurations.getTestURL(application+"-"+env);
         System.out.println("Environment from config file: "+env);
         System.out.println(env+ " URL from YAML File: "+url);
 

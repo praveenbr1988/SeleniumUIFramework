@@ -64,8 +64,8 @@ public class CustomCucumberTestNGTests extends AbstractTestNGCucumberTests {
 
 
     public static void setupBeforeSuite(){
-        System.out.println("Browser value is: "+getTestParameter("browser"));
-        System.out.println("Environment value is: "+getTestParameter("env"));
+//        System.out.println("Browser value is: "+getTestParameter("browser"));
+//        System.out.println("Environment value is: "+getTestParameter("env"));
         //System.out.println("execution mode value is: "+getTestParameter("executionmode"));
 
     }

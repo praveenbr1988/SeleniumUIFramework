@@ -1,7 +1,7 @@
 Feature: Login
 
-#  Background:
-#    Given The test data is loaded from "src/test/resources/testData/crewA/testdatasheet.xlsx"
+  Background:
+    Given The test data is loaded from "src/test/resources/testData/crewA/testdatasheet.xlsx"
 
   Scenario: Successful Login1
     Given The user is on the login page

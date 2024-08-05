@@ -1,6 +1,6 @@
 environments:
   APP-QA: https://www.saucedemo.com/
-  APP-UAT: https://www.UATgoogle.com
+  FB-QA: https://www.facebook.com
   APP-RND: https://www.RNDgoogle.com
   APP-DEV: https://www.DEVgoogle.com
 
