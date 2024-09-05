@@ -5,6 +5,10 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import java.time.Duration;
 import java.util.List;
+
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import com.ui.coreLayer.FrameworkConfigs.LoggerUtil;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,14 +21,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import pnc.qel.reporting.framework.Logging;
-import pnc.qel.reporting.framework.ReportFunctions;
+
 
     public class ElementReadyStatus {
+        private static final Logger logger = LoggerUtil.getLogger(ElementReadyStatus.class);
         public WebDriver driver;
         protected ExtentTest testStep;
         protected SoftAssert softAssert;
-        protected CustomSoftAssert customSoftAssert;
         private boolean cucumberTest = false;
         private static final String TEST_ABORTED = " -- Test Aborted";
         private static final String SECONDS_FOR = " seconds for ";
@@ -60,25 +63,11 @@ import pnc.qel.reporting.framework.ReportFunctions;
             this.softAssert = softAssert;
         }
 
-        public ElementReadyStatus(WebDriver driver, ExtentTest testStep, SoftAssert softAssert, CustomSoftAssert customSoftAssert) {
-            this.driver = driver;
-            this.testStep = testStep;
-            this.softAssert = softAssert;
-            this.customSoftAssert = customSoftAssert;
-        }
-
         public ElementReadyStatus(WebDriver driver) {
             this.driver = driver;
             this.setCucumberTest(true);
         }
 
-        public CustomSoftAssert getCustomSoftAssert() {
-            return this.customSoftAssert;
-        }
-
-        public void setCustomSoftAssert(CustomSoftAssert customSoftAssert) {
-            this.customSoftAssert = customSoftAssert;
-        }
 
         protected boolean alertBoxDisplayed() {
             try {
@@ -171,7 +160,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
                         .until(ExpectedConditions.visibilityOf(element));
                 return true;
             } catch (Exception var4) {
-                Logging.logError(var4.getMessage());
+                logger.error(var4.getMessage());
                 return true;
             }
         }
@@ -182,7 +171,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
                         .until(ExpectedConditions.visibilityOfElementLocated(locator));
                 return true;
             } catch (Exception var4) {
-                Logging.logError(var4.getMessage());
+                logger.error(var4.getMessage());
                 return true;
             }
         }
@@ -191,10 +180,8 @@ import pnc.qel.reporting.framework.ReportFunctions;
             try {
                 (new WebDriverWait(this.driver, Duration.ofSeconds((long)timeout)))
                         .until(ExpectedConditions.presenceOfElementLocated(locator));
-                this.screenCaptureOnFailure("Object Does Not Exist" + timeout + " seconds - for " + locator.toString());
+                this.screenCaptureOnFailure("Object Does Not Exist" + timeout + " seconds - for " + locator.toString(),"Object exists for - "+ locator.toString());
                 return false;
-            } catch (TimeoutException var4) {
-                return true;
             } catch (Exception var5) {
                 return true;
             }
@@ -208,8 +195,6 @@ import pnc.qel.reporting.framework.ReportFunctions;
                 String var10002 = this.getObjectIdentityValue(element);
                 this.screenCaptureOnFailure(var10001, "Object Exists for - " + var10002);
                 return false;
-            } catch (TimeoutException var4) {
-                return true;
             } catch (Exception var5) {
                 return true;
             }
@@ -219,10 +204,8 @@ import pnc.qel.reporting.framework.ReportFunctions;
             try {
                 (new WebDriverWait(this.driver, Duration.ofSeconds((long)timeout)))
                         .until(ExpectedConditions.presenceOfElementLocated(locator));
-                this.screenCaptureOnFailure("Object Does Not Exist" + timeout + " seconds - for " + locator.toString());
+                this.screenCaptureOnFailure("Object Does Not Exist" + timeout + " seconds - for " + locator.toString(),"Object exists for - "+ locator.toString());
                 return false;
-            } catch (TimeoutException var4) {
-                return true;
             } catch (Exception var5) {
                 return true;
             }
@@ -582,55 +565,63 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void screenCaptureOnFailure(String expectedResult, String actualResult) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage);
+            logger.error(errorMessage);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachment(this.driver));
                 this.softAssert.assertTrue(false, errorMessage);
-            } else if (this.customSoftAssert != null) {
-                this.customSoftAssert.softAssertFail(errorMessage);
+            } else {
+                ExtentCucumberAdapter.addTestStepLog("<font color=\"#ff0000\"><b>"+errorMessage+"</b></font color>");
+                this.cucumberTest=false;
+                Assert.fail(errorMessage);
             }
         }
 
         public void screenCaptureOnFailure(String expectedResult, String actualResult, WebElement element) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage);
+            logger.error(errorMessage);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachmentScroll(this.driver, element));
                 this.softAssert.assertTrue(false, errorMessage);
-            } else if (this.customSoftAssert != null) {
-                this.customSoftAssert.softAssertFail(errorMessage);
+            } else {
+                ExtentCucumberAdapter.addTestStepLog("<font color=\"#ff0000\"><b>"+errorMessage+"</b></font color>");
+                this.cucumberTest=false;
+                Assert.fail(errorMessage);
             }
         }
 
         public void screenCaptureOnFailure(String expectedResult, String actualResult, By locator) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage);
+            logger.error(errorMessage);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachmentScroll(this.driver, locator));
                 this.softAssert.assertTrue(false, errorMessage);
-            } else if (this.customSoftAssert != null) {
-                this.customSoftAssert.softAssertFail(errorMessage);
+            } else {
+                ExtentCucumberAdapter.addTestStepLog("<font color=\"#ff0000\"><b>"+errorMessage+"</b></font color>");
+                this.cucumberTest=false;
+                Assert.fail(errorMessage);
             }
         }
 
         public void screenCaptureOnFailure(String expectedResult, Exception e) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Exception Result - " + e.getMessage();
-            Logging.logError(errorMessage, e);
+            logger.error(errorMessage, e);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, e.getMessage()));
                 this.testStep.log(Status.INFO, this.getImageAttachment(this.driver));
                 this.softAssert.assertTrue(false, errorMessage);
-            } else if (this.customSoftAssert != null) {
-                this.customSoftAssert.softAssertFail(e.getMessage());
+            } else {
+                ExtentCucumberAdapter.addTestStepLog("<font color=\"#ff0000\"><b>"+e.getMessage()+"</b></font color>");
+                this.cucumberTest=false;
+                Assert.fail(e.getMessage());
             }
         }
 
         public void screenCaptureOnFailureAbort(String expectedResult, String actualResult) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
+            logger.error(errorMessage + " - Test Aborted");
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachmentAbort(this.driver));
@@ -642,7 +633,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void screenCaptureOnFailureAbort(String expectedResult, String actualResult, WebElement element) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
+            logger.error(errorMessage + " - Test Aborted");
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachmentScrollAbort(this.driver, element));
@@ -653,7 +644,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void screenCaptureOnFailureAbort(String expectedResult, String actualResult, By locator) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
+            logger.error(errorMessage + " - Test Aborted");
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
                 this.testStep.log(Status.INFO, this.getImageAttachmentScrollAbort(this.driver, locator));
@@ -664,7 +655,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void screenCaptureOnFailureAbort(String expectedResult, Exception e) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Exception Result - " + e.getMessage();
-            Logging.logError(errorMessage + " - Test Aborted", e);
+            logger.error(errorMessage + " - Test Aborted", e);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, e.getMessage()));
                 this.testStep.log(Status.INFO, this.getImageAttachmentAbort(this.driver));
@@ -677,7 +668,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
             try {
                 return this.getImagePath(driver);
             } catch (Exception var3) {
-                this.getCucumberSoftAssertion(var3);
+                this.getCatchSoftAssertion(var3);
                 return null;
             }
         }
@@ -687,7 +678,7 @@ import pnc.qel.reporting.framework.ReportFunctions;
                 this.scrollElement(element);
                 return this.getImagePath(driver);
             } catch (Exception var4) {
-                this.getCucumberSoftAssertion(var4);
+                this.getCatchSoftAssertion(var4);
                 return null;
             }
         }
@@ -784,63 +775,45 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void secureDataFailure(String expectedResult, String actualResult) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
+            logger.error(errorMessage + " - Test Aborted");
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
-                this.reportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
-                if (this.customSoftAssert != null) {
-                    this.customSoftAssert.softAssertTrue(false, errorMessage + " - Test Aborted");
-                } else {
-                    this.softAssert.assertTrue(false, errorMessage + " - Test Aborted");
-                }
+            } else {
+                this.softAssert.assertTrue(false, errorMessage + " - Test Aborted");
             }
+
         }
 
         public void secureDataFailure(String expectedResult, Exception e) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Exception Result - " + e.getMessage();
-            Logging.logError(errorMessage, e);
+            logger.error(errorMessage, e);
             if (this.getCucumberTest()) {
                 this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, e.getMessage()));
-                this.reportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, e.getMessage()));
-                if (this.customSoftAssert != null) {
-                    this.customSoftAssert.softAssertTrue(false, errorMessage + " - Test Aborted");
-                } else {
-                    this.softAssert.assertTrue(false, errorMessage + " - Test Aborted");
-                }
+            } else {
+                this.softAssert.assertTrue(false, errorMessage + " - Test Aborted");
             }
+
         }
 
 
         public void secureDataFailure(String expectedResult, String actualResult, WebElement element) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage);
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
-            if (this.getCucumberTest()) {
-                if (this.customSoftAssert != null) {
-                    this.customSoftAssert.softAssertTrue(false, errorMessage + " - Test Aborted");
-                } else {
-                    this.softAssert.assertTrue(false, errorMessage);
-                }
-            }
+            logger.error(errorMessage);
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
+            this.softAssert.assertTrue(false, errorMessage);
         }
 
         public void secureDataFailure(String expectedResult, String actualResult, By locator) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage);
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
-            if (this.getCucumberTest()) {
-                if (this.customSoftAssert != null) {
-                    this.customSoftAssert.softAssertTrue(false, errorMessage + " - Test Aborted");
-                } else {
-                    this.softAssert.assertTrue(false, errorMessage);
-                }
-            }
+            logger.error(errorMessage);
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
+            this.softAssert.assertTrue(false, errorMessage);
         }
 
         public void secureDataFailureAbort(String expectedResult, String actualResult) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
+            logger.error(errorMessage + " - Test Aborted");
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
             if (this.getCucumberTest()) {
                 this.softAssert.assertAll();
             }
@@ -849,8 +822,8 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void secureDataFailureAbort(String expectedResult, Exception e) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Exception Result - " + e.getMessage();
-            Logging.logError(errorMessage + " - Test Aborted", e);
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, e.getMessage()));
+            logger.error(errorMessage + " - Test Aborted", e);
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, e.getMessage()));
             if (this.getCucumberTest()) {
                 this.softAssert.assertAll();
             }
@@ -859,8 +832,8 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void secureDataFailureAbort(String expectedResult, String actualResult, WebElement element) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
+            logger.error(errorMessage + " - Test Aborted");
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
             if (this.getCucumberTest()) {
                 this.softAssert.assertAll();
             }
@@ -869,8 +842,8 @@ import pnc.qel.reporting.framework.ReportFunctions;
 
         public void secureDataFailureAbort(String expectedResult, String actualResult, By locator) {
             String errorMessage = "Expected Result - " + expectedResult + "\n\n--\nActual Result - " + actualResult;
-            Logging.logError(errorMessage + " - Test Aborted");
-            ReportFunctions.logFailTestStep(this.testStep, this.getCucumberTest(), this.formatFailureResults(expectedResult, actualResult));
+            logger.error(errorMessage + " - Test Aborted");
+            this.testStep.log(Status.FAIL, this.formatFailureResults(expectedResult, actualResult));
             if (this.getCucumberTest()) {
                 this.softAssert.assertAll();
             }
@@ -986,9 +959,6 @@ import pnc.qel.reporting.framework.ReportFunctions;
             return false;
         }
 
-import com.aventstack.extentrepo;
-
-        Edit View
 
         protected boolean elementExistsAndEnabledSecureData(By locator, int timeout) {
             try {

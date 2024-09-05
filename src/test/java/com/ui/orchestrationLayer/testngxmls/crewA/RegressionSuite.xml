@@ -21,7 +21,47 @@
 <!--    </test>-->
 
     <test verbose="1" preserve-order="true"
-          name="Regression Suite">
+          name="Regression Suite1">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite2">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite3">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite4">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite5">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
+        </classes>
+    </test>
+
+    <test verbose="1" preserve-order="true"
+          name="Regression Suite6">
         <parameter name="browser" value="CHROME"></parameter>
         <classes>
             <class name="com.ui.orchestrationLayer.cucumberRunners.crewA.CucumberTestRunner"/>
